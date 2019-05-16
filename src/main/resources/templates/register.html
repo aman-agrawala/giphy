@@ -104,20 +104,20 @@
   USER  <input type="checkbox" name="roles" value="USER" />
   <hr/>
 </div>        
-        <div  style="overflow-x:scroll; white-space: nowrap;height:300px;width:400px" >
-        	<table id="myTableId" dt:table="true" width="50%" border="2">
-        <thead>
-            <tr>
-                <th align="left">Image</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="gyimage : ${imageListObj}">
-                <td align="left" ><input type="radio" id="img" th:field="*{imageUrl}" name="img[]" th:value="${gyimage?.url}" /> <img th:src="${gyimage?.url}" th:width="${gyimage?.width}" th:height="${gyimage?.height}" > </td>
-            </tr>
-        </tbody>
-    </table>
-        </div>
+<!--         <div  style="overflow-x:scroll; white-space: nowrap;height:300px;width:400px" > -->
+<!--         	<table id="myTableId" dt:table="true" width="50%" border="2"> -->
+<!--         <thead> -->
+<!--             <tr> -->
+<!--                 <th align="left">Image</th> -->
+<!--             </tr> -->
+<!--         </thead> -->
+<!--         <tbody> -->
+<!--             <tr th:each="gyimage : ${imageListObj}"> -->
+<!--                 <td align="left" ><input type="radio" id="img" th:field="*{imageUrl}" name="img[]" th:value="${gyimage?.url}" /> <img th:src="${gyimage?.url}" th:width="${gyimage?.width}" th:height="${gyimage?.height}" > </td> -->
+<!--             </tr> -->
+<!--         </tbody> -->
+<!--     </table> -->
+<!--         </div> -->
 
         <button type="submit"
           class="btn btn-primary block full-width m-b">Register</button>

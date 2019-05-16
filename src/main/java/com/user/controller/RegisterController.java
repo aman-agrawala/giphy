@@ -175,30 +175,11 @@ public class RegisterController {
 		
 		//Giphy API
 		Map<String, Object> resultMapObj =  httpService.getSearchData(null);
-		List<Map<String,Object>> imageListObj = new ArrayList<Map<String,Object>>(); 
+		List<Map<String,Object>> imageListObj = new ArrayList<Map<String,Object>>();
+		HttpService service = new HttpService();
 		
 		try {
-			if (resultMapObj != null && resultMapObj.get("data") != null) {
-				ObjectMapper resultOutputMap = new ObjectMapper();
-				String jsonResultOutput = resultOutputMap.writeValueAsString(resultMapObj.get("data"));
-				List<Map<String,Object>> resultObj = resultOutputMap.readValue(jsonResultOutput, List.class);
-				
-				for(Map<String, Object> dataObj : resultObj) {
-					ObjectMapper imageMap = new ObjectMapper();
-					String jsonImageOutput = imageMap.writeValueAsString(dataObj.get("images"));
-					Map<String,Object> imageMapObj = resultOutputMap.readValue(jsonImageOutput, Map.class);
-					String jsonImageFixedOutput = imageMap.writeValueAsString(imageMapObj.get("fixed_height_still"));
-					Map<String,Object> imageFixedObj = resultOutputMap.readValue(jsonImageFixedOutput, Map.class);
-					Map<String, Object> imageGy = new HashMap<String, Object>();
-					imageGy.put("url", imageFixedObj.get("url"));
-					imageGy.put("width", imageFixedObj.get("width"));
-					imageGy.put("height", imageFixedObj.get("height"));
-					imageListObj.add(imageGy);  							
-				}
-			
-			}
-			System.out.println("imageListObj::"+imageListObj);
-			modelAndView.addObject("imageListObj", imageListObj);     
+			modelAndView.addObject("imageListObj", service.getImageProperties(null));
 		} catch (Exception ex) {
 			
 		}

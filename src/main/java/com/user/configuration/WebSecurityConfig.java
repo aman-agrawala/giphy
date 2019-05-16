@@ -23,7 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   
   @Override
   protected void configure(HttpSecurity http) throws Exception{
-	// h2 console 사용을 위한 설정 
+	// h2 console
     http.csrf().ignoringAntMatchers("/h2console/**");
     http.headers().frameOptions().sameOrigin();
     
@@ -37,14 +37,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .and()
       .formLogin()
         .loginPage("/login")
-        .successHandler(new CustomAuthenticationSuccess()) // 로그인 성공 핸들러 
-        .failureHandler(new CustomAuthenticationFailure()) // 로그인 실패 핸들러 
+        .successHandler(new CustomAuthenticationSuccess()) //will redirect to /main if success login
+        .failureHandler(new CustomAuthenticationFailure()) //will redirect to /login if failure login
         .permitAll()
         .and()
       .logout()
         .permitAll()
         .and()
-       .exceptionHandling().accessDeniedPage("/403"); // 권한이 없을경우 해당 url로 이동
+       .exceptionHandling().accessDeniedPage("/403"); 
   }
   
   @Autowired

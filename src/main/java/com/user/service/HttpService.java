@@ -63,7 +63,7 @@ public class HttpService {
 			CloseableHttpClient httpclient = this.giphyConnect();
  			String url = "";
  			if (StringUtils.isEmpty(searchString)) {
- 				url = "http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=hqxZtQVtC2c24Obu5maK6o3mZwIrgdFD&limit=20";
+ 				url = "http://api.giphy.com/v1/gifs/search?q=hello&api_key=hqxZtQVtC2c24Obu5maK6o3mZwIrgdFD&limit=20";
  			} else {
  				url = String.format("http://api.giphy.com/v1/gifs/search?q=%s&api_key=hqxZtQVtC2c24Obu5maK6o3mZwIrgdFD&limit=20", searchString.replace(" ", "+"));
  			}
@@ -104,7 +104,7 @@ public class HttpService {
 					ObjectMapper imageMap = new ObjectMapper();
 					String jsonImageOutput = imageMap.writeValueAsString(dataObj.get("images"));
 					Map<String,Object> imageMapObj = resultOutputMap.readValue(jsonImageOutput, Map.class);
-					String jsonImageFixedOutput = imageMap.writeValueAsString(imageMapObj.get("fixed_height_still"));
+					String jsonImageFixedOutput = imageMap.writeValueAsString(imageMapObj.get("fixed_height"));
 					Map<String,Object> imageFixedObj = resultOutputMap.readValue(jsonImageFixedOutput, Map.class);
 					Map<String, Object> imageGy = new HashMap<String, Object>();
 					imageGy.put("url", imageFixedObj.get("url"));
